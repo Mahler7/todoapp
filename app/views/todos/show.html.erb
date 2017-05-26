@@ -1,7 +1,4 @@
-<h1>Show A Todo</h1>
-<p>
-  name: <%= @todo.name %>
-</p>
+<%= render "shared/page_title", title: @todo.name.capitalize %>
 <p>
   description: <%= @todo.description %>
 </p>
