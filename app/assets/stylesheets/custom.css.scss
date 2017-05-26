@@ -1,8 +1,48 @@
 $background-colors: #581845;
+$text-colors: #581845;
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+// ******** MODULAR CSS *********** //
+
+.center {
+  text-align: center;
+}
+
+.btn-background {
+  background-color: $background-colors;
+}
+
+
+// ************ HOME ************** //
+.jumbotron {
+  background-color: #fff;
+  // position: absolute;
+  // top: 50%;
+  // transform: translateY(-50%);
+}
+
+.jumbotron .container {
+  background-image: asset-url('todo-cover.jpg');
+  background-repeat:no-repeat;
+  width: 750px;
+  height: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block; 
+}
+
+.jumbotron h1 {
+  color: $text-colors;
+  position: relative;
+  bottom: 15px;
+}
+
+.jumbotron p {
+  position: relative;
+  top: 300px;
+}
 
 // *********** NAVBAR ************* //
 
