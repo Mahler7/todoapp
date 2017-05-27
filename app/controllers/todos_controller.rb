@@ -11,8 +11,9 @@ class TodosController < ApplicationController
 
   def create
     @todo = Todo.new(todo_params)
+    @todo.user = User.first
     if @todo.save
-      flash[:notice] = "Todo was created successfully!"
+      flash[:success] = "Todo was created successfully!"
       redirect_to todo_path(@todo)
     else
       render :new
@@ -28,7 +29,7 @@ class TodosController < ApplicationController
 
   def update
     if @todo.update(todo_params)
-      flash[:notice] = "Todo was successfully updated."
+      flash[:success] = "Todo was successfully updated."
       redirect_to todo_path(@todo)
     else
       render :edit
@@ -37,7 +38,7 @@ class TodosController < ApplicationController
 
   def destroy
     @todo.destroy
-    flash[:notice] = "Todo was deleted successfully"
+    flash[:success] = "Todo was deleted successfully"
     redirect_to todos_path
   end
 

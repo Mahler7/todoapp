@@ -1,6 +1,10 @@
 <%= render "shared/page_title", title: @todo.name.capitalize %>
-<p>
-  description: <%= @todo.description %>
-</p>
-<%= link_to "Edit this todo", edit_todo_path(@todo) %>
-<%= link_to "Back to todos listing", todos_path %>
+<div class="row">
+  <div class="well center col-md-8 col-md-offset-2">
+    <h4>Description:</h4>
+    <%= simple_format(@todo.description) %>
+    <%= link_to "Edit this todo", edit_todo_path(@todo) %>
+    <%= link_to "Back to todos listing", todos_path %>
+  </div>
+</div>
+    
