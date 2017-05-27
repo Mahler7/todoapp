@@ -3,8 +3,10 @@
   <div class="well center col-md-8 col-md-offset-2">
     <h4>Description:</h4>
     <%= simple_format(@todo.description) %>
-    <%= link_to "Edit this todo", edit_todo_path(@todo) %>
-    <%= link_to "Back to todos listing", todos_path %>
+    <p><small>Todo created by <%= @todo.user.name %>&nbsp;<%= time_ago_in_words(@todo.created_at) %> ago.</small></p>
+    <%= link_to "Edit this todo", edit_todo_path(@todo), class: "btn btn-xs btn-warning" %>
+    <%= link_to "Delete this todo", todo_path(@todo), method: :delete, data: { confirm: "Are you sure you want to delete this todo?" }, class: "btn btn-xs btn-danger" %>
+    <%= link_to "Back to todos listing", todos_path, class: "btn btn-xs btn-primary" %>
   </div>
 </div>
     
