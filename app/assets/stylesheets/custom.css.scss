@@ -52,20 +52,28 @@ $text-colors: #581845;
 
 // *********** NAVBAR ************* //
 
-.nav {
+.navbar {
   background-color: $background-colors;
   height: 50px;
 }
 
-.nav-tabs > li > a {
+.navbar-default .navbar-nav > li > a {
   color: #fff;
-  height: 50px;
 }
 
-.nav-tabs > li > a:hover {
-  background-color: #fff;
-  color: black;
-  height: 50px;
+#logo {
+  float: left;
+  font-size: 1.7em;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  font-weight: bold;
+  margin-top: 8px;
+}
+
+#logo:hover {
+  color: #fff;
+  text-decoration: none;
 }
 
 

@@ -58,6 +58,8 @@ Todo
   -check count is the same
   -check redirect is to edit
   -check for error message html classes
+-delete
+    
 
 
 User
