@@ -16,6 +16,9 @@ User
 -email should have correct format
 -email without correct format are rejected
 -email should be lowercase before hitting db
+*-password should be present
+*-password should have 8 characters
+*-associated todos should be destroyed
 
 Controllers
 
@@ -68,3 +71,61 @@ Todo
 
 
 User
+-index
+  -should get index page
+  -hit index controller
+  -match route for link to user show page
+-signup
+  -get signup path
+  -hit new controller
+  -assert count in db is +1
+  -redirect to show
+  -hit show controller
+  -check flash
+-signup errors
+  -get signup path
+  -hit new controller
+  -assert in db stays the same
+  -hit new controller
+  -assert matches for error partial
+-show
+  -get show route
+  -hit show controller
+  -assert todo names are links with matching text
+  -assert todo descriptions match descriptions
+-edit
+  -get edit route
+  -hit edit controller
+  -patch request
+  -redirect to show
+  -check flash
+  -reload user
+  -match user name and email
+-edit errors
+  -get edit route
+  -hit edit controller
+  -patch request
+  -redirect to edit
+  -assert matches for error partial
+-admin edit
+  -get edit route
+  -hit edit controller
+  -patch request
+  -redirect to show
+  -check flash
+  -reload user
+  -match user name and email
+-admin edit errors
+  -get edit route
+  -hit edit controller
+  -patch request
+  -redirect to index
+  -check flash
+  -reload user
+  -check for patch matches original
+-delete
+  -get user path
+  -hit index controller
+  -check for difference in db -1
+  -redirect to index
+  -check flash

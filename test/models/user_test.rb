@@ -60,4 +60,23 @@ class UserTest < ActiveSupport::TestCase
     assert_equal uppercase.downcase, @user.reload.email
   end
 
+  test "password should be present" do
+    @user.password = ''
+    @user.password_confirmation = ''
+    assert_not @user.valid?
+  end
+
+  test "password should have 8 characters" do
+    @user.password = 'a' * 7
+    @user.password_confirmation = 'a' * 7
+    assert_not @user.valid?
+  end
+
+  test "associated todos should be destroyed" do
+    @user.save
+    @user.todos.create!(name: "todos", description: "testing todo dependent destroy")
+    assert_difference "Todo.count", -1 do
+      @user.destroy
+    end
+  end
 end
