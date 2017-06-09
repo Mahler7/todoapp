@@ -16,9 +16,9 @@ User
 -email should have correct format
 -email without correct format are rejected
 -email should be lowercase before hitting db
-*-password should be present
-*-password should have 8 characters
-*-associated todos should be destroyed
+-password should be present
+-password should have 8 characters
+-associated todos should be destroyed
 
 Controllers
 
@@ -32,7 +32,7 @@ Todo
   -hits controller
   -match todo names, description, and user
   -edit, delete, and back links
--new
+-new user
   -get new page
   -hits controller
   -add new name, description, 
@@ -40,13 +40,35 @@ Todo
   -check redirect is to show
   -check flash is not empty
   -check new name, description match response.body
--new errors
+-new user errors
   -get new page
   -hits controller
   -add invalid data
   -check count is the same
   -check redirect is to new
   -check for error message html classes
+-new user login
+  -new login route
+  -new sessions controller
+  -post request login in
+  -redirect to user show
+  -follow redirect
+  -check users show controller
+  -check flash
+  -assert select login path has count 0
+  -assert select logout path
+  -assert select user show
+  -assert select user edit
+-new user login errors
+  -new login route
+  -new sessions controller
+  -post request login
+  -hit sessions new controller
+  -check for no flash
+  -assert select logout path has count 0
+  -assert select login path
+  -get root path
+  -check flash
 -edit
   -get edit page
   -hits controller
