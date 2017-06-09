@@ -59,7 +59,12 @@ Todo
   -check redirect is to edit
   -check for error message html classes
 -delete
-    
+  -get show route
+  -hits controller show
+  -show has delete link, route,  with text
+  -check db count is -1
+  -redirect to todos
+  -make sure flash is there
 
 
 User

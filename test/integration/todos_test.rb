@@ -3,7 +3,7 @@ require 'test_helper'
 class TodosTest < ActionDispatch::IntegrationTest
   
   def setup
-    @user = User.create(name: "Testy", email: "test@gmail.com")
+    @user = User.create(name: "Testy", email: "test@gmail.com", password: "password", password_confirmation: "password")
     @todo = @user.todos.build(name: "Todo", description: "Run away tests for tests.")
     @todo2 = @user.todos.build(name: "Hello There", description: "Just keep saying hello there.")
     @todo.save
@@ -98,5 +98,16 @@ class TodosTest < ActionDispatch::IntegrationTest
     patch todo_path(@todo), params: { todo: { name: edit_name, description: edit_description } }
     assert_template 'todos/edit'
     assert_select 'div.panel-danger'
+  end
+
+  test 'successfully delete a todo' do
+    get todo_path(@todo)
+    assert_template 'todos/show'
+    assert_select "a[href=?]", todo_path(@todo), text: "Delete this todo"
+    assert_difference "Todo.count", -1 do
+      delete todo_path(@todo)
+    end
+    assert_redirected_to todos_path
+    assert_not flash.empty?
   end
 end

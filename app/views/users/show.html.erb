@@ -1,0 +1,7 @@
+<%= render "shared/page_title", title: "#{@user.name}'s Profile" %>
+<div class="row">
+  <div class="col-md-4 col-md-offset-4 center">
+    <%= gravatar_for(@user, size: 150) %>
+  </div>
+</div>
+<h4 align="center"><%= @user.name %>'s Todos</h4>

@@ -3,7 +3,7 @@ require 'test_helper'
 class TodoTest < ActiveSupport::TestCase
 
   def setup
-    @user = User.create(name: "Testy", email: "test@gmail.com")
+    @user = User.create(name: "Testy", email: "test@gmail.com", password: "password", password_confirmation: "password")
     @todo = @user.todos.build(name: "Todo", description: "Run away tests for tests.")
   end
 
