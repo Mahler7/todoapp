@@ -11,6 +11,10 @@ Rails.application.routes.draw do
   # patch '/todos/:id', to: 'todos#update'
   # delete '/todos/:id', to: 'todos#destroy'
   get '/signup', to: 'users#new'
+  get '/sign_in', to: 'sessions#new'
+  post '/sign_in', to: 'sessions#create'
+  delete '/sign_out', to: 'sessions#destroy'
+  
   resources :users, except: [:new]
   resources :todos
 end

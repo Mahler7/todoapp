@@ -17,7 +17,7 @@ class UsersTest < ActionDispatch::IntegrationTest
     assert_not flash.empty?
   end
 
-  test "new user reject from creating account" do
+  test "new user rejected from creating account" do
     get signup_path
     assert_template "users/new"
     assert_no_difference "User.count" do
