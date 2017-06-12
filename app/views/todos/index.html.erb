@@ -1,3 +1,8 @@
 <%= render 'shared/page_title', title: "listing all todo's" %>
-
+<div align="center">
+  <%= will_paginate %>
+</div>
 <%= render 'todo', obj: @todos %>
+<div align="center">
+  <%= will_paginate %>
+</div>

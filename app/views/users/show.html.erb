@@ -5,4 +5,10 @@
   </div>
 </div>
 <h4 align="center"><%= @user.name %>'s Todos</h4>
+<div align="center">
+  <%= will_paginate @user_todos %>
+</div>
 <%= render "todos/todo", obj: @user_todos %>
+<div align="center">
+  <%= will_paginate @user_todos %>
+</div>

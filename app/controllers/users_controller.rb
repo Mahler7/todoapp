@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_action :require_admin, only: [:destroy]
   
   def index
-    @users = User.all
+    @users = User.paginate(page: params[:page], per_page: 5)
   end
 
   def new
@@ -23,7 +23,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user_todos = @user.todos
+    @user_todos = @user.todos.paginate(page: params[:page], per_page: 5)
   end
 
   def edit
@@ -40,9 +40,11 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user.destroy
-    flash[:success] = "This user and their todos have been deleted"
-    redirect_to users_path
+    if !@user.admin?
+      @user.destroy
+      flash[:success] = "This user and their todos have been deleted"
+      redirect_to users_path
+    end
   end
 
   private

@@ -1,5 +1,6 @@
 <%= render "shared/page_title", title: "All Users" %>
 <div align="center">
+  <%= will_paginate %>
   <% @users.each do |user| %>
     <ul class="listing">
       <div class="row">
@@ -7,11 +8,12 @@
           <li><%= link_to gravatar_for(user) %></li>
           <li class="user-title"><%= link_to user.name, user_path(user) %></li>
           <li><small><%= pluralize(user.todos.count, "todos") if user.todos %></small></li>
-          <% if signed_in? && current_user.admin? %>
+          <% if signed_in? && current_user.admin? && !user.admin? %>
             <li><%= link_to "Delete this user", user_path(user), method: :delete, data: { confirm: "Are you sure you want to delete this user and all of there todos?" } %></li>
           <% end %>
         </div>
       </div>
     </ul>
   <% end %>
+  <%= will_paginate %>
 </div>
