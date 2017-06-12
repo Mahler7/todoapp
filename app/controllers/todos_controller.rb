@@ -11,7 +11,7 @@ class TodosController < ApplicationController
 
   def create
     @todo = Todo.new(todo_params)
-    @todo.user = User.first
+    @todo.user = current_user
     if @todo.save
       flash[:success] = "Todo was created successfully!"
       redirect_to todo_path(@todo)

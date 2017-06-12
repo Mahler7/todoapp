@@ -1,0 +1,20 @@
+<% obj.each do |todo| %>
+  <div class="row">
+    <div class="col-md-2">
+      <section class="user-info center">
+        <%= gravatar_for(todo.user, size: 120) %>
+      </section>
+    </div>
+    <div class="col-md-8 well">
+      <h4><%= link_to todo.name, todo_path(todo) %></h4>
+      <p><%= truncate(todo.description, length: 150) %></p>
+      <p>
+        <span class="quiet"><small>Created <%= time_ago_in_words(todo.created_at) %></small></span>
+      </p>
+      <div class="user-actions">
+        <%= link_to "Edit this todo", edit_todo_path(todo), class: "btn btn-xs btn-warning" %>
+        <%= link_to "Delete this todo", todo_path(todo), method: :delete, data: { confirm: "Are you sure want to delete this todo?" }, class: "btn btn-xs btn-danger" %>
+      </div>
+    </div>
+  </div>
+<% end %>
