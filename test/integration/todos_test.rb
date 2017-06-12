@@ -3,7 +3,8 @@ require 'test_helper'
 class TodosTest < ActionDispatch::IntegrationTest
   
   def setup
-    @user = User.create(name: "Testy", email: "test@gmail.com", password: "password", password_confirmation: "password")
+    @user = User.create(name: "Testy", email: "test@gmail.com", password: "password", password_confirmation: "password", admin: true)
+    @user2 = User.create(name: "Tester", email: "tester@gmail.com", password: "password", password_confirmation: "password")
     @todo = @user.todos.build(name: "Todo", description: "Run away tests for tests.")
     @todo2 = @user.todos.build(name: "Hello There", description: "Just keep saying hello there.")
     @todo.save
@@ -30,6 +31,7 @@ class TodosTest < ActionDispatch::IntegrationTest
   end
 
   test 'todos show page listing' do
+    sign_in_as(@user.email, @user.password)
     get todo_path(@todo)
     assert_template 'todos/show'
     assert_match @todo.name.capitalize, response.body
@@ -40,11 +42,13 @@ class TodosTest < ActionDispatch::IntegrationTest
   end
 
   test 'get todos new' do
+    sign_in_as(@user.email, @user.password)
     get new_todo_path
     assert_response :success
   end
 
   test 'create valid new todos' do
+    sign_in_as(@user.email, @user.password)
     get new_todo_path
     assert_template 'todos/new'
     new_name = "Do Laundry"
@@ -59,6 +63,7 @@ class TodosTest < ActionDispatch::IntegrationTest
   end
 
   test 'reject invalid new todos' do
+    sign_in_as(@user.email, @user.password)
     get new_todo_path
     assert_template 'todos/new'
     new_name = ''
@@ -71,13 +76,16 @@ class TodosTest < ActionDispatch::IntegrationTest
   end
 
   test 'get todos edit' do
+    sign_in_as(@user.email, @user.password)
     get edit_todo_path(@todo)
     assert_response :success
+    sign_in_as(@user2.email, @user2.password)
     get edit_todo_path(@todo2)
-    assert_response :success
+    assert_response :redirect
   end
 
   test 'create valid todo edits' do
+    sign_in_as(@user.email, @user.password)
     get edit_todo_path(@todo)
     assert_template 'todos/edit'
     edit_name = "mow lawn"
@@ -91,6 +99,7 @@ class TodosTest < ActionDispatch::IntegrationTest
   end
 
   test 'reject invalid todo edits' do
+    sign_in_as(@user.email, @user.password)
     get edit_todo_path(@todo)
     assert_template 'todos/edit'
     edit_name = ''
@@ -101,6 +110,7 @@ class TodosTest < ActionDispatch::IntegrationTest
   end
 
   test 'successfully delete a todo' do
+    sign_in_as(@user.email, @user.password)
     get todo_path(@todo)
     assert_template 'todos/show'
     assert_select "a[href=?]", todo_path(@todo), text: "Delete this todo"

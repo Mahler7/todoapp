@@ -32,7 +32,7 @@ Todo
   -hits controller
   -match todo names, description, and user
   -edit, delete, and back links
--new user
+-new todo
   -get new page
   -hits controller
   -add new name, description, 
@@ -40,35 +40,13 @@ Todo
   -check redirect is to show
   -check flash is not empty
   -check new name, description match response.body
--new user errors
+-new todo errors
   -get new page
   -hits controller
   -add invalid data
   -check count is the same
   -check redirect is to new
   -check for error message html classes
--new user login
-  -new login route
-  -new sessions controller
-  -post request login in
-  -redirect to user show
-  -follow redirect
-  -check users show controller
-  -check flash
-  -assert select login path has count 0
-  -assert select logout path
-  -assert select user show
-  -assert select user edit
--new user login errors
-  -new login route
-  -new sessions controller
-  -post request login
-  -hit sessions new controller
-  -check for no flash
-  -assert select logout path has count 0
-  -assert select login path
-  -get root path
-  -check flash
 -edit
   -get edit page
   -hits controller
@@ -110,6 +88,28 @@ User
   -assert in db stays the same
   -hit new controller
   -assert matches for error partial
+-new user login
+  -new login route
+  -new sessions controller
+  -post request login in
+  -redirect to user show
+  -follow redirect
+  -check users show controller
+  -check flash
+  -assert select login path has count 0
+  -assert select logout path
+  -assert select user show
+  -assert select user edit
+-new user login errors
+  -new login route
+  -new sessions controller
+  -post request login
+  -hit sessions new controller
+  -check for no flash
+  -assert select logout path has count 0
+  -assert select login path
+  -get root path
+  -check flash
 -show
   -get show route
   -hit show controller
