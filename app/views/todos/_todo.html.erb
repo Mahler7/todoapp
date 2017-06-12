@@ -12,8 +12,10 @@
         <span class="quiet"><small>Created <%= time_ago_in_words(todo.created_at) %></small></span>
       </p>
       <div class="user-actions">
-        <%= link_to "Edit this todo", edit_todo_path(todo), class: "btn btn-xs btn-warning" %>
-        <%= link_to "Delete this todo", todo_path(todo), method: :delete, data: { confirm: "Are you sure want to delete this todo?" }, class: "btn btn-xs btn-danger" %>
+        <% if signed_in? && (current_user.name == todo.name || current_user.admin?) %>
+          <%= link_to "Edit this todo", edit_todo_path(todo), class: "btn btn-xs btn-warning" %>
+          <%= link_to "Delete this todo", todo_path(todo), method: :delete, data: { confirm: "Are you sure want to delete this todo?" }, class: "btn btn-xs btn-danger" %>
+        <% end %>
       </div>
     </div>
   </div>

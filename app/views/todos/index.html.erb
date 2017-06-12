@@ -1,18 +1,3 @@
 <%= render 'shared/page_title', title: "listing all todo's" %>
 
-<table class="table">
-  <tr>
-    <th>Name</th>
-    <th>Description</th>
-    <th>Edit</th>
-    <th>Delete</th>
-  </tr>
-  <% @todos.each do |todo| %>
-    <tr>
-      <td><%= link_to todo.name, todo_path(todo) %></td>
-      <td><%= todo.description %></td>
-      <td><%= link_to "Edit", edit_todo_path(todo) %></td>
-      <td><%= link_to "Delete", todo_path(todo), method: :delete, data: { confirm: "Are you sure" } %></td>
-    </tr>
-  <% end %>
-</table>
+<%= render 'todo', obj: @todos %>
